@@ -46,9 +46,11 @@ func (user User) Authorize(ctx context.Context, authorizationID string, scopes [
 	}
 	if err = json.Unmarshal(data, &resp); err != nil {
 		return nil, requestError(err)
+	} else if resp.Error != nil {
+		return nil, resp.Error
 	}
 
-	return resp.Authorization, resp.Error
+	return resp.Authorization, nil
 }
 
 // GetOAuthToken get oauth token with code
