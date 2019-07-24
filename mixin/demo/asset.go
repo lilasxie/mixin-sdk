@@ -34,8 +34,7 @@ func validateAsset(asset *mixin.Asset) {
 	}
 }
 
-func doAsset(ctx context.Context, user *mixin.User) string {
-	assetID := "965e5c6e-434c-3fa9-b780-c50f43cd955c"
+func doAsset(ctx context.Context, user *mixin.User, assetID string) string {
 	asset, err := user.ReadAsset(ctx, assetID)
 	if err != nil {
 		log.Panicln(err)
