@@ -12,9 +12,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/fox-one/mixin-sdk/mixin"
 	"github.com/gofrs/uuid"
 	"github.com/gorilla/websocket"
+	"github.com/lilasxie/mixin-sdk/mixin"
 )
 
 const (

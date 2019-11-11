@@ -1,7 +1,7 @@
 package messenger
 
 import (
-	"github.com/fox-one/mixin-sdk/mixin"
+	"github.com/lilasxie/mixin-sdk/mixin"
 )
 
 // Messenger mixin messenger

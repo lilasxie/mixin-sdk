@@ -9,8 +9,8 @@ import (
 	"log"
 	"time"
 
-	"github.com/fox-one/mixin-sdk/messenger"
-	"github.com/fox-one/mixin-sdk/mixin"
+	"github.com/lilasxie/mixin-sdk/messenger"
+	"github.com/lilasxie/mixin-sdk/mixin"
 )
 
 type Handler struct {

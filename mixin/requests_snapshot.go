@@ -4,9 +4,10 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	mixin_sdk "github.com/lilasxie/mixin-sdk"
 	"time"
 
-	"github.com/fox-one/mixin-sdk/utils"
+	"github.com/lilasxie/mixin-sdk/utils"
 )
 
 // ReadNetwork read network snapshots
@@ -140,5 +141,44 @@ func (user *User) ReadExternal(ctx context.Context, assetID, destination, tag st
 	} else if resp.Error != nil {
 		return nil, resp.Error
 	}
+	return resp.Snapshots, nil
+}
+
+// ReadUserSnapshots read user snapshots
+func ReadUserSnapshots(ctx context.Context, accessToken, assetID string, offset time.Time, limit uint, order bool) ([]*Snapshot, error) {
+	uri := fmt.Sprintf("/snapshots?limit=%d", limit)
+	if !offset.IsZero() {
+		uri = uri + "&offset=" + offset.UTC().Format(time.RFC3339Nano)
+	}
+	if len(assetID) > 0 {
+		uri = uri + "&asset=" + assetID
+	}
+	if order {
+		uri = uri + "&order=ASC"
+	} else {
+		uri = uri + "&order=DESC"
+	}
+	ctx = mixin_sdk.WithToken(ctx, accessToken)
+	rsp, err := mixin_sdk.Request(ctx).Get(uri)
+	if err != nil {
+		return nil, requestError(err)
+	}
+
+	var resp struct {
+		Snapshots []*Snapshot `json:"data,omitempty"`
+		Error     *Error      `json:"error,omitempty"`
+	}
+	if err = json.Unmarshal(rsp.Body(), &resp); err != nil {
+		return nil, requestError(err)
+	} else if resp.Error != nil {
+		return nil, resp.Error
+	}
+
+	for _, snapshot := range resp.Snapshots {
+		if snapshot.Asset != nil {
+			snapshot.AssetID = snapshot.Asset.AssetID
+		}
+	}
+
 	return resp.Snapshots, nil
 }

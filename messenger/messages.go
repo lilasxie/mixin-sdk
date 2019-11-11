@@ -4,7 +4,7 @@ import (
 	"context"
 	"encoding/json"
 
-	"github.com/fox-one/mixin-sdk/mixin"
+	"github.com/lilasxie/mixin-sdk/mixin"
 )
 
 type Message struct {

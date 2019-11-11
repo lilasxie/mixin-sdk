@@ -1,4 +1,4 @@
-module github.com/fox-one/mixin-sdk
+module github.com/lilasxie/mixin-sdk
 
 go 1.13
 

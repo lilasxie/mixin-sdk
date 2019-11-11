@@ -4,7 +4,7 @@ import (
 	"context"
 	"log"
 
-	"github.com/fox-one/mixin-sdk/mixin"
+	"github.com/lilasxie/mixin-sdk/mixin"
 )
 
 func doAddress(ctx context.Context, user *mixin.User, assetID, publicKey, label, pin string) {

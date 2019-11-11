@@ -4,8 +4,8 @@ import (
 	"context"
 	"encoding/json"
 
-	mixin_sdk "github.com/fox-one/mixin-sdk"
-	"github.com/fox-one/mixin-sdk/mixin"
+	mixin_sdk "github.com/lilasxie/mixin-sdk"
+	"github.com/lilasxie/mixin-sdk/mixin"
 )
 
 // User messenger user entity
@@ -18,25 +18,25 @@ type User struct {
 	Phone          string `json:"phone,omitempty"`
 }
 
-func fetchProfile(ctx context.Context) (*User,error) {
-	resp,err := mixin_sdk.Request(ctx).Get("/me")
+func fetchProfile(ctx context.Context) (*User, error) {
+	resp, err := mixin_sdk.Request(ctx).Get("/me")
 	if err != nil {
-		return nil,err
+		return nil, err
 	}
 
 	var user User
-	err = mixin_sdk.UnmarshalResponse(resp,&user)
-	return &user,err
+	err = mixin_sdk.UnmarshalResponse(resp, &user)
+	return &user, err
 }
 
 // FetchProfile fetch my profile
 func (m Messenger) FetchProfile(ctx context.Context) (*User, error) {
-	ctx = mixin_sdk.WithAuth(ctx,m.User)
+	ctx = mixin_sdk.WithAuth(ctx, m.User)
 	return fetchProfile(ctx)
 }
 
-func UserMe(ctx context.Context,accessToken string) (*User,error) {
-	ctx = mixin_sdk.WithToken(ctx,accessToken)
+func UserMe(ctx context.Context, accessToken string) (*User, error) {
+	ctx = mixin_sdk.WithToken(ctx, accessToken)
 	return fetchProfile(ctx)
 }
 

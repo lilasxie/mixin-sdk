@@ -4,8 +4,8 @@ import (
 	"context"
 	"log"
 
-	"github.com/fox-one/mixin-sdk/mixin"
 	"github.com/gofrs/uuid"
+	"github.com/lilasxie/mixin-sdk/mixin"
 )
 
 func doTransaction(ctx context.Context, user *mixin.User, assetID, opponentKey, amount, memo, pin string) {
