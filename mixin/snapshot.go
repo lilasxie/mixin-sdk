@@ -12,6 +12,7 @@ type Snapshot struct {
 	ChainID    string    `json:"chain_id,omitempty"`
 	OpponentID string    `json:"opponent_id,omitempty"`
 	CreatedAt  time.Time `json:"created_at"`
+	Memo       string    `json:"memo,omitempty"`
 
 	Source string `json:"source"` // Source DEPOSIT_CONFIRMED, TRANSFER_INITIALIZED, WITHDRAWAL_INITIALIZED, WITHDRAWAL_FEE_CHARGED, WITHDRAWAL_FAILED
 	Amount string `json:"amount"`
